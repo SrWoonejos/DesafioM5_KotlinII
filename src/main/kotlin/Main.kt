@@ -1,27 +1,27 @@
-package com.desafiolatam
-
 fun main() {
 
-    val products = populateData()
+    val products = populateData().values.sortedByDescending { it?.stock }
 
     products.forEach {
         println("+++++++++++++++++++++++++++++++++++++++++++++")
-        val product = it.value
+        val product = it
         println(
-            "ID: ${product.id} " +
-                    "\nNOMBRE: ${product?.name.uppercase()} " +
-                    "\nDESCRIPCIÓN: ${product?.description.showNA(products?.description)} " +
-                    "\nDISPONIBLE: ${product.isAvailable.YesOrNot(product?.isEnable)} " +
-                    "\nHABILITADO  ${product} " +
-                    "\nSTOCK: ${product}"
+            "ID: ${product?.id} " +
+                    "\nNOMBRE: ${product?.name?.uppercase()} " +
+                    "\nDESCRIPCIÓN: ${product?.description?.showNA(product?.description)} " +
+                    "\nDISPONIBLE: ${product?.isAvailable?.YesOrNo(product.isAvailable)} " +
+                    "\nHABILITADO  ${product?.isEnable?.YesOrNo(product.isEnable)} " +
+                    "\nSTOCK: ${product?.stock?.WithStock(product.stock)}"
         )
         println("+++++++++++++++++++++++++++++++++++++++++++++")
     }
 }
 
-fun String.showNA(description:String): String = if(description==null) "N/A" else description
+fun String.showNA(description: String?): String = this ?: "N/A"
 
-//fun Boolean.yesOrNot()
+fun Boolean.YesOrNo(isTrue:Boolean): String = if(isTrue) "SI" else "NO"
+
+fun Int.WithStock(stock:Int): String = if(stock > 0) this.toString() else "SIN STOCK"
 
 fun populateData(): MutableMap<Int, Product?> =
     mutableMapOf(

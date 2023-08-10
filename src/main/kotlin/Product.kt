@@ -1,10 +1,9 @@
-package com.desafiolatam
+class Product (
 
-    data class Product(
-        val id: Int,
-        var name: String,
-        val description: String?,
-        var isAvailable: Boolean = true,
-        var isEnable: Boolean = true,
-        var stock: Int = 0,
-    )
+    val id: Int,
+    var name: String,
+    val description: String?,
+    var isAvailable: Boolean = true,
+    var isEnable: Boolean = true,
+    var stock: Int = 0,
+)
