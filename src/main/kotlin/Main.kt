@@ -17,7 +17,7 @@ fun main() {
     }
 }
 
-fun String.showNA(description: String?): String = this ?: "N/A"
+fun String.showNA(description: String?): String = description ?: "N/A"
 
 fun Boolean.YesOrNo(isTrue:Boolean): String = if(isTrue) "SI" else "NO"
 
